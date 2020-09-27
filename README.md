@@ -1,0 +1,2 @@
+# trainingGo
+Go
