@@ -8,9 +8,6 @@ Go
 ### HelloWorld
 下記の出力がされるコマンドを作成すること
 ```sh
-goHelloWorld
-# => "Hello World."
-
-goHelloWorld "こんにちは、世界。"
+helloworld "こんにちは" "世界。"
 # => "こんにちは、世界"
 ```
