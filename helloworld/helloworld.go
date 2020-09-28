@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	imput := "Hello World."
-	fmt.Println(imput)
+	val := "Hello World"
+	fmt.Println(val)
 }
