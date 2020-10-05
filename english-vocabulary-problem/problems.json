@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "word": "apple",
+        "meaning": "リンゴ",
+        "description": "リンゴ（林檎、学名：Malus domestica, Malus pumila）は、バラ科リンゴ属の落葉高木樹。またはその果実のこと。植物学上はセイヨウリンゴと呼ぶ。春、白または薄紅の花が咲く。"
+    },
+    {
+        "id": 2,
+        "word": "banana",
+        "meaning": "バナナ",
+        "description": "リンゴ（林檎、学名：Malus domestica, Malus pumila）は、バラ科リンゴ属の落葉高木樹。またはその果実のこと。植物学上はセイヨウリンゴと呼ぶ。春、白または薄紅の花が咲く。"
+    },
+    {
+        "id": 3,
+        "word": "grape",
+        "meaning": "ブドウ",
+        "description": "ブドウ（葡萄、英名 \"Grape\"、学名 Vitis spp.）は、ブドウ科 (Vitaceae) のつる性落葉低木である。また、その果実のこと。"
+    }
+]
