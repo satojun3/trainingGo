@@ -2,11 +2,20 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"os"
-	// "strings"
 )
+
+// Problem ...
+type Problem struct {
+	ID          int    `json:"id"`
+	Word        string `json:"word"`
+	Meaning     string `json:"meaning"`
+	Description string `json:"description"`
+}
 
 func main() {
 	// オプションの設定 初期値は w
@@ -23,19 +32,11 @@ func main() {
 	default:
 		fmt.Printf("オプションを間違えています。w か s を選択してください。")
 	}
-
-	fmt.Printf(inputAnswer("aaa"))
-
-	// testScanner := bufio.NewScanner(os.Stdin)
-	// bool := testScanner.Scan()
-	// fmt.Println(bool)
-	// for testScanner.Scan() {
-	// 	if testScanner.Text() == "stop" {
-	// 		break
-	// 	}
-	// 	fmt.Println("It's on an infinite loop.")
-	// }
-	// fmt.Println("end.")
+	problems := getProblems()
+	for _, problem := range problems {
+		fmt.Printf(problem.Meaning + " を英語で？\n")
+		fmt.Printf(inputAnswer(problem.Word))
+	}
 }
 
 func inputAnswer(correct string) string {
@@ -53,4 +54,17 @@ func inputAnswer(correct string) string {
 		fmt.Printf("不正解です。\n")
 	}
 	return responseWord
+}
+
+// JSONファイルの読み込み
+func getProblems() []Problem {
+	bytes, err := ioutil.ReadFile("problems.json")
+	if err != nil {
+		fmt.Printf("error:jsonファイルが読み込めない")
+	}
+	var problems []Problem
+	if err := json.Unmarshal(bytes, &problems); err != nil {
+		fmt.Printf("error:読み込んだjsonデータを変換できません")
+	}
+	return problems
 }
