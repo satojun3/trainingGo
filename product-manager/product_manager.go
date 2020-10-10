@@ -6,15 +6,7 @@ import (
 	"github.com/satojun3/trainingGo/product-manager/registation"
 	"os"
 	"strconv"
-	// "strings"
 )
-
-type Product struct {
-	Id      int
-	Name    string
-	Price   int
-	janCode string
-}
 
 // メニューの表示
 func displayMenu() {
@@ -23,14 +15,10 @@ func displayMenu() {
 	fmt.Println("3. End")
 }
 
-// }
-// func input() {
-// 	scanner := bufio.NewScanner(os.Stdin)
-// 	scanner.Scan()
-// 	strings.TrimSpace(scanner.Text())
-// }
-
-// 入力値チェック
+var (
+	product     registation.Product
+	productList []registation.Product
+)
 
 func main() {
 	// メニューを表示
@@ -38,20 +26,28 @@ func main() {
 
 	// 値の入力
 	scanner := bufio.NewScanner(os.Stdin)
+
 	for scanner.Scan() {
-		inputMenuNum, err := strconv.Atoi(scanner.Text())
+		inputMenuNum, err := strconv.Atoi(scanner.Text()) // TODO: 何で再代入ができるのか調べる
 		if err == nil && (inputMenuNum >= 1 && inputMenuNum <= 3) {
 			switch inputMenuNum {
 			case 1:
 				// 登録機能
-				fmt.Println("id:", registation.Register())
-				fmt.Println("登録したよ")
+				product = registation.Register(len(productList))
+				productList = append(productList, product)
+				fmt.Println(registation.GetLabel())
+				fmt.Println(product.Record())
 			case 2:
-				fmt.Printf("C")
+				fmt.Println(registation.GetLabel())
+				for _, product := range productList {
+					fmt.Println(product.Record())
+				}
 			case 3:
 				fmt.Println("Exit the system.")
 				return
 			}
+		} else {
+			fmt.Println("Please enter 1 - 3.")
 		}
 		displayMenu()
 	}
