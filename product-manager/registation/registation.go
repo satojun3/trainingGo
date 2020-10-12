@@ -8,7 +8,10 @@ import (
 	"strings"
 )
 
-const TAX = 0.1
+const (
+	TAX           = 0.1
+	BUSINESS_CODE = "123456789"
+)
 
 type Product struct {
 	Id         int
@@ -67,7 +70,25 @@ func incrementId(latestId int) int {
 }
 
 func getJancode(id int) string {
-	return strconv.Itoa(id) + "123456789"
+	// 文字列を逆順にする
+	reverseCode := reverse(BUSINESS_CODE)
+	// ３桁0埋め
+	zeroPaddingId := fmt.Sprintf("%03d", id)
+	code := reverseCode + zeroPaddingId
+	return code
+}
+
+func reverse(val string) string {
+	var runeArr []rune
+	for _, oneText := range val {
+		runeArr = append(runeArr, oneText)
+	}
+	reverseText := ""
+	for i := 1; i <= len(runeArr); i++ {
+		reverseText += string(runeArr[len(runeArr)-i])
+	}
+	fmt.Println(reverseText)
+	return reverseText
 }
 
 func (p Product) Record() string {
